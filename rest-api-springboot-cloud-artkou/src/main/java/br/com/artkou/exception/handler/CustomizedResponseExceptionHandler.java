@@ -1,9 +1,8 @@
 package br.com.artkou.exception.handler;
 
 import java.util.Date;
-
 import br.com.artkou.exception.ExceptionResponse;
-import br.com.artkou.exception.UnsupportedMathOperationException;
+import br.com.artkou.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,8 +28,8 @@ public class CustomizedResponseExceptionHandler extends ResponseEntityExceptionH
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(
             Exception ex, WebRequest request) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(
@@ -38,7 +37,7 @@ public class CustomizedResponseExceptionHandler extends ResponseEntityExceptionH
                 ex.getMessage(),
                 request.getDescription(false));
 
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
 }
