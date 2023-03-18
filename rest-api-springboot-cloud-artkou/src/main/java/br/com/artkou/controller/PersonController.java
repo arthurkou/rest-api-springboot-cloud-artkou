@@ -1,6 +1,6 @@
 package br.com.artkou.controller;
 
-import br.com.artkou.entity.Person;
+import br.com.artkou.data.vo.Person;
 import br.com.artkou.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
