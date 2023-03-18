@@ -1,15 +1,21 @@
 package br.com.artkou.model;
 
 import br.com.artkou.entity.PersonEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+@JsonPropertyOrder({"id","firstName","lastName","address","gender"})
+public class Person extends RepresentationModel<Person> implements Serializable {
 
-    private Long id;
+    @JsonProperty("id")
+    private Long key;
     private String firstName;
     private String lastName;
     private String address;
@@ -17,7 +23,7 @@ public class Person {
 
     public static Person toEntity(PersonEntity person) {
         return Person.builder()
-                .id(person.getId())
+                .key(person.getId())
                 .firstName(person.getFirstName())
                 .lastName(person.getLastName())
                 .address(person.getAddress())

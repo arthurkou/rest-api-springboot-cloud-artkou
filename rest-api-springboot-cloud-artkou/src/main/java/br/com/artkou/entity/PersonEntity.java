@@ -42,7 +42,7 @@ public class PersonEntity implements Serializable {
     private String gender;
 
     public PersonEntity(Person personVO) {
-        this.id = personVO.getId();
+        this.id = personVO.getKey();
         this.firstName = personVO.getFirstName();
         this.lastName = personVO.getLastName();
         this.address = personVO.getAddress();
