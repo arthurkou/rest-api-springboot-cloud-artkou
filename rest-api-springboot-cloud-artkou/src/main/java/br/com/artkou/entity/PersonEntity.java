@@ -1,6 +1,6 @@
 package br.com.artkou.entity;
 
-import br.com.artkou.data.vo.Person;
+import br.com.artkou.model.Person;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

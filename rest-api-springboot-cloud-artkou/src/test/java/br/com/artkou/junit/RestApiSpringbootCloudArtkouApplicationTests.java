@@ -1,4 +1,4 @@
-package br.com.artkou;
+package br.com.artkou.junit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

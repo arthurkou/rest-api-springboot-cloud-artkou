@@ -1,4 +1,4 @@
-package br.com.artkou.data.vo;
+package br.com.artkou.model;
 
 import br.com.artkou.entity.PersonEntity;
 import lombok.*;
@@ -6,6 +6,7 @@ import lombok.*;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Person {
 
     private Long id;

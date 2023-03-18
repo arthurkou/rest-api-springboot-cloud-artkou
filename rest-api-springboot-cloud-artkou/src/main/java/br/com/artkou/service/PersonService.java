@@ -3,7 +3,7 @@ package br.com.artkou.service;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import br.com.artkou.data.vo.Person;
+import br.com.artkou.model.Person;
 import br.com.artkou.entity.PersonEntity;
 import br.com.artkou.exception.ResourceNotFoundException;
 import br.com.artkou.repository.PersonRepository;
