@@ -2,6 +2,7 @@ package br.com.artkou.exception.handler;
 
 import java.util.Date;
 import br.com.artkou.exception.ExceptionResponse;
+import br.com.artkou.exception.RequiredObjectIsNullException;
 import br.com.artkou.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,18 @@ public class CustomizedResponseExceptionHandler extends ResponseEntityExceptionH
                 request.getDescription(false));
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(
+            Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
 }

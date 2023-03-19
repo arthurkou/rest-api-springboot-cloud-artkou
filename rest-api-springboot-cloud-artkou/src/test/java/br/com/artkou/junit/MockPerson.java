@@ -1,5 +1,6 @@
 package br.com.artkou.junit;
 
+import br.com.artkou.entity.PersonEntity;
 import br.com.artkou.model.Person;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class MockPerson {
 
-        public Person mockEntity() {
+        public PersonEntity mockEntity() {
             return mockEntity(0);
         }
 
@@ -15,8 +16,8 @@ public class MockPerson {
             return mockVO(0);
         }
 
-        public List<Person> mockEntityList() {
-            List<Person> persons = new ArrayList<Person>();
+        public List<PersonEntity> mockEntityList() {
+            List<PersonEntity> persons = new ArrayList<>();
             for (int i = 0; i < 14; i++) {
                 persons.add(mockEntity(i));
             }
@@ -31,12 +32,12 @@ public class MockPerson {
             return persons;
         }
 
-        public Person mockEntity(Integer number) {
-            Person person = new Person();
+        public PersonEntity mockEntity(Integer number) {
+            PersonEntity person = new PersonEntity();
             person.setAddress("Addres Test" + number);
             person.setFirstName("First Name Test" + number);
             person.setGender(((number % 2)==0) ? "Male" : "Female");
-            person.setKey(number.longValue());
+            person.setId(number.longValue());
             person.setLastName("Last Name Test" + number);
             return person;
         }

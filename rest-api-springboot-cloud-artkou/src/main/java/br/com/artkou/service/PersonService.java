@@ -3,11 +3,11 @@ package br.com.artkou.service;
 import java.util.List;
 import java.util.stream.Collectors;
 import br.com.artkou.controller.PersonController;
+import br.com.artkou.exception.RequiredObjectIsNullException;
 import br.com.artkou.model.Person;
 import br.com.artkou.entity.PersonEntity;
 import br.com.artkou.exception.ResourceNotFoundException;
 import br.com.artkou.repository.PersonRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class PersonService {
 
     private PersonRepository repository;
-    private ObjectMapper mapper;
 
     public List<Person> findAll() {
         log.info("Finding all people!");
@@ -43,6 +42,7 @@ public class PersonService {
     }
 
     public Person create(Person person) {
+        if (person == null) throw new RequiredObjectIsNullException();
         log.info("Creating one person!");
         PersonEntity personEntity = repository.save(new PersonEntity(person));
         Person personCreated = Person.toEntity(personEntity);
@@ -52,6 +52,7 @@ public class PersonService {
     }
 
     public Person update(Person person) {
+        if (person == null) throw new RequiredObjectIsNullException();
         log.info("Updating one person!");
         PersonEntity personEntity  = repository.findById(person.getKey())
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
