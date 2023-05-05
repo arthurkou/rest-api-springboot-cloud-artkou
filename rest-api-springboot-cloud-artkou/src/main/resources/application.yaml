@@ -18,3 +18,7 @@ spring:
     multipart:
       enabled: true
       file-size-threshold: 2KB
+springdoc:
+  pathsToMatch: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true
