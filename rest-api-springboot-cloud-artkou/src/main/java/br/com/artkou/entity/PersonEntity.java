@@ -41,12 +41,12 @@ public class PersonEntity implements Serializable {
     @Column(nullable = false, length = 6)
     private String gender;
 
-    public PersonEntity(Person personVO) {
-        this.id = personVO.getKey();
-        this.firstName = personVO.getFirstName();
-        this.lastName = personVO.getLastName();
-        this.address = personVO.getAddress();
-        this.gender = personVO.getGender();
+    public PersonEntity(Person person) {
+        this.id = person.getKey();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.address = person.getAddress();
+        this.gender = person.getGender();
     }
 
     public static PersonEntity toEntity(PersonEntity personEntity, Person person) {
