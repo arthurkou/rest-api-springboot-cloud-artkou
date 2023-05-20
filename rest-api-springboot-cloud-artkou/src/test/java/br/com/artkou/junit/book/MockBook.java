@@ -1,4 +1,4 @@
-package br.com.artkou.junit;
+package br.com.artkou.junit.book;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package br.com.artkou.junit;
+package br.com.artkou.junit.person;
 
 import br.com.artkou.entity.PersonEntity;
 import br.com.artkou.exception.RequiredObjectIsNullException;

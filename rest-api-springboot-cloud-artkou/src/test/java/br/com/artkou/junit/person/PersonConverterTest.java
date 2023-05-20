@@ -1,4 +1,4 @@
-package br.com.artkou.junit;
+package br.com.artkou.junit.person;
 
 import br.com.artkou.model.Person;
 import com.fasterxml.jackson.core.JsonProcessingException;
