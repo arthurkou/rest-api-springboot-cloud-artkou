@@ -46,7 +46,7 @@ public class PersonServiceTest {
         assertNotNull(result);
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
-        assertTrue(result.getLinks().toString().contains("</api/person/1>;rel=\"self\""));
+        assertTrue(result.getLinks().toString().contains("</api/person/v1/1>;rel=\"self\""));
         assertEquals("Addres Test1", result.getAddress());
         assertEquals("First Name Test1", result.getFirstName());
         assertEquals("Last Name Test1", result.getLastName());
@@ -68,7 +68,7 @@ public class PersonServiceTest {
         assertNotNull(result);
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
-        assertTrue(result.getLinks().toString().contains("</api/person/1>;rel=\"self\""));
+        assertTrue(result.getLinks().toString().contains("</api/person/v1/1>;rel=\"self\""));
         assertEquals("Addres Test1", result.getAddress());
         assertEquals("First Name Test1", result.getFirstName());
         assertEquals("Last Name Test1", result.getLastName());
@@ -102,7 +102,7 @@ public class PersonServiceTest {
         assertNotNull(result);
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
-        assertTrue(result.getLinks().toString().contains("</api/person/1>;rel=\"self\""));
+        assertTrue(result.getLinks().toString().contains("</api/person/v1/1>;rel=\"self\""));
         assertEquals("Addres Test1", result.getAddress());
         assertEquals("First Name Test1", result.getFirstName());
         assertEquals("Last Name Test1", result.getLastName());
@@ -134,7 +134,7 @@ public class PersonServiceTest {
         assertNotNull(personOne.getKey());
         assertNotNull(personOne.getLinks());
 
-        assertTrue(personOne.getLinks().toString().contains("</api/person/1>;rel=\"self\""));
+        assertTrue(personOne.getLinks().toString().contains("</api/person/v1/1>;rel=\"self\""));
         assertEquals("Addres Test1", personOne.getAddress());
         assertEquals("First Name Test1", personOne.getFirstName());
         assertEquals("Last Name Test1", personOne.getLastName());
@@ -144,7 +144,7 @@ public class PersonServiceTest {
         assertNotNull(personFour);
         assertNotNull(personFour.getKey());
         assertNotNull(personFour.getLinks());
-        assertTrue(personFour.getLinks().toString().contains("</api/person/4>;rel=\"self\""));
+        assertTrue(personFour.getLinks().toString().contains("</api/person/v1/4>;rel=\"self\""));
         assertEquals("Addres Test4", personFour.getAddress());
         assertEquals("First Name Test4", personFour.getFirstName());
         assertEquals("Last Name Test4", personFour.getLastName());
@@ -154,7 +154,7 @@ public class PersonServiceTest {
         assertNotNull(personSeven);
         assertNotNull(personSeven.getKey());
         assertNotNull(personSeven.getLinks());
-        assertTrue(personSeven.getLinks().toString().contains("</api/person/7>;rel=\"self\""));
+        assertTrue(personSeven.getLinks().toString().contains("</api/person/v1/7>;rel=\"self\""));
         assertEquals("Addres Test7", personSeven.getAddress());
         assertEquals("First Name Test7", personSeven.getFirstName());
         assertEquals("Last Name Test7", personSeven.getLastName());
