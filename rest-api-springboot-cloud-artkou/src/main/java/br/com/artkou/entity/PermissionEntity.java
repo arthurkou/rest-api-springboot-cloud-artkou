@@ -1,10 +1,9 @@
 package br.com.artkou.entity;
 
 import java.io.Serializable;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.*;
 
 
 @Entity

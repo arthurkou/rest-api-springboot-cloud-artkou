@@ -1,4 +1,4 @@
-package br.com.artkou.entity.controller;
+package br.com.artkou.controller;
 
 import br.com.artkou.model.AccountCredentials;
 import br.com.artkou.service.AuthService;

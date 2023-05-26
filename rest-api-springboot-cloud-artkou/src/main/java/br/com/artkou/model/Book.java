@@ -9,14 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonPropertyOrder({"id", "author", "launchDate", "price", "title"})
-public class Book extends ResourceSupport implements Serializable {
+public class Book extends RepresentationModel<Book> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
