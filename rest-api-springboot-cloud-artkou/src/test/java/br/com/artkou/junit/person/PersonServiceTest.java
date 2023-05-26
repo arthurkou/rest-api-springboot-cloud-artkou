@@ -5,21 +5,19 @@ import br.com.artkou.exception.RequiredObjectIsNullException;
 import br.com.artkou.model.Person;
 import br.com.artkou.repository.PersonRepository;
 import br.com.artkou.service.PersonService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ExtendWith(MockitoExtension.class)
+
 public class PersonServiceTest {
 
     MockPerson input;
@@ -30,14 +28,17 @@ public class PersonServiceTest {
     @Mock
     PersonRepository repository;
 
-    @BeforeEach
-    void setUpMocks() {
+    @Rule
+    public final ExpectedException ex = ExpectedException.none();
+
+    @Before
+    public void setUpMocks() {
         input = new MockPerson();
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void testFindById() {
+    public void testFindById() {
         PersonEntity entity = input.mockEntity(1);
         entity.setId(1L);
         when(repository.findById(1L)).thenReturn(Optional.of(entity));
@@ -54,7 +55,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    void testCreate() {
+    public void testCreate() {
         PersonEntity entity = input.mockEntity(1);
         PersonEntity persisted = entity;
         persisted.setId(1L);
@@ -76,18 +77,15 @@ public class PersonServiceTest {
     }
 
     @Test
-    void testCreateWithNullPerson() {
-        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> {
-            service.create(null);
-        });
+    public void testCreateWithNullPerson() {
 
-        String expectedMessage = "It is not allowed to persist a null object!";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
+        ex.expect(RequiredObjectIsNullException.class);
+        ex.expectMessage("It is not allowed to persist a null object!");
+        service.create(null);
     }
 
     @Test
-    void testUpdate() {
+    public void testUpdate() {
         PersonEntity entity = input.mockEntity(1);
         PersonEntity persisted = entity;
         persisted.setId(1L);
@@ -110,18 +108,15 @@ public class PersonServiceTest {
     }
 
     @Test
-    void testUpdateWithNullPerson() {
-        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> {
-            service.update(null);
-        });
+    public void testUpdateWithNullPerson() {
 
-        String expectedMessage = "It is not allowed to persist a null object!";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
+        ex.expect(RequiredObjectIsNullException.class);
+        ex.expectMessage("It is not allowed to persist a null object!");
+        service.update(null);
     }
 
     @Test
-    void testFindAll() {
+    public void testFindAll() {
         List<PersonEntity> list = input.mockEntityList();
         when(repository.findAll()).thenReturn(list);
 
@@ -163,7 +158,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    void testDelete() {
+    public void testDelete() {
         PersonEntity entity = input.mockEntity(1);
         entity.setId(1L);
         when(repository.findById(1L)).thenReturn(Optional.of(entity));

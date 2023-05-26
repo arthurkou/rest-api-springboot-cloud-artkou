@@ -11,14 +11,14 @@ import br.com.artkou.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 @AllArgsConstructor
-public class BookServices {
+public class BookService {
 
 	@Autowired
 	BookRepository repository;
@@ -32,7 +32,6 @@ public class BookServices {
 				book.add(linkTo(methodOn(BookController.class)
 						.findById(book.getKey()))
 						.withSelfRel()));
-
 		return listBook;
 	}
 
@@ -40,7 +39,8 @@ public class BookServices {
 		log.info("Finding one book!");
 		Book book = repository.findById(id).map(Book::toEntity)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-		return book.add(linkTo(methodOn(BookController.class).findById(id)).withSelfRel());
+		book.add(linkTo(methodOn(BookController.class).findById(id)).withSelfRel());
+		return book;
 	}
 	
 	public Book create(Book book) {
@@ -48,9 +48,10 @@ public class BookServices {
 		log.info("Creating one book!");
 		BookEntity bookEntity = repository.save(new BookEntity(book));
 		Book bookCreated = Book.toEntity(bookEntity);
-		return bookCreated.add(linkTo(methodOn(BookController.class)
+		bookCreated.add(linkTo(methodOn(BookController.class)
 				.findById(book.getKey()))
 				.withSelfRel());
+		return bookCreated;
 	}
 	
 	public Book update(Book book) {
@@ -61,7 +62,8 @@ public class BookServices {
 
 		BookEntity bookUpdated = repository.save(BookEntity.toEntity(bookEntity, book));
 		Book response = Book.toEntity(bookUpdated);
-		return response.add(linkTo(methodOn(BookController.class).findById(book.getKey())).withSelfRel());
+		response.add(linkTo(methodOn(BookController.class).findById(book.getKey())).withSelfRel());
+		return response;
 	}
 	
 	public void delete(Long id) {

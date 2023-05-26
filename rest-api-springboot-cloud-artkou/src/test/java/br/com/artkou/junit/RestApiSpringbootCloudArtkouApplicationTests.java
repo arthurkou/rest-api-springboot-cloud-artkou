@@ -1,13 +1,13 @@
 package br.com.artkou.junit;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestApiSpringbootCloudArtkouApplicationTests {
+public class RestApiSpringbootCloudArtkouApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 }

@@ -11,8 +11,8 @@ import br.com.artkou.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 
 @Service
@@ -38,7 +38,8 @@ public class PersonService {
         log.info("Finding one person!");
         Person person = repository.findById(id).map(Person::toEntity)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-        return person.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        person.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        return person;
     }
 
     public Person create(Person person) {
@@ -46,9 +47,10 @@ public class PersonService {
         log.info("Creating one person!");
         PersonEntity personEntity = repository.save(new PersonEntity(person));
         Person personCreated = Person.toEntity(personEntity);
-        return personCreated.add(linkTo(methodOn(PersonController.class)
+        personCreated.add(linkTo(methodOn(PersonController.class)
                 .findById(person.getKey()))
                 .withSelfRel());
+        return personCreated;
     }
 
     public Person update(Person person) {
@@ -59,7 +61,8 @@ public class PersonService {
 
         PersonEntity personUpdated = repository.save(PersonEntity.toEntity(personEntity, person));
         Person response = Person.toEntity(personUpdated);
-        return response.add(linkTo(methodOn(PersonController.class).findById(person.getKey())).withSelfRel());
+        response.add(linkTo(methodOn(PersonController.class).findById(person.getKey())).withSelfRel());
+        return response;
     }
 
     public void delete(Long id) {

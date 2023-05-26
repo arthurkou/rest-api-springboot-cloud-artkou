@@ -20,7 +20,7 @@ import java.util.List;
 @Tag(name = "People", description = "Endpoint for Managing People")
 public class PersonController {
 
-    private PersonService service;
+    private PersonService personService;
 
     @GetMapping
     @Operation(summary = "Finds all People", description = "Finds all people", tags = {"People"},
@@ -39,7 +39,7 @@ public class PersonController {
                 }
             )
     public List<Person> findAll() {
-        return service.findAll();
+        return personService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -56,7 +56,7 @@ public class PersonController {
             }
     )
     public Person findById(@PathVariable(value = "id") Long id) {
-        return service.findById(id);
+        return personService.findById(id);
     }
 
     @PostMapping
@@ -71,7 +71,7 @@ public class PersonController {
             }
     )
     public Person create(@RequestBody Person person) {
-        return service.create(person);
+        return personService.create(person);
     }
 
     @PutMapping
@@ -87,7 +87,7 @@ public class PersonController {
             }
     )
     public Person update(@RequestBody Person person) {
-        return service.update(person);
+        return personService.update(person);
     }
 
     @DeleteMapping("/{id}")
@@ -101,7 +101,7 @@ public class PersonController {
             }
     )
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
-        service.delete(id);
+        personService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

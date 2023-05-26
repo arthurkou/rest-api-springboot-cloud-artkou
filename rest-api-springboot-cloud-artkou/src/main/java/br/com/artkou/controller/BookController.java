@@ -2,7 +2,7 @@ package br.com.artkou.controller;
 
 import java.util.List;
 import br.com.artkou.model.Book;
-import br.com.artkou.service.BookServices;
+import br.com.artkou.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Book", description = "Endpoints for Managing Book")
 public class BookController {
 	
-	private BookServices service;
+	private BookService bookService;
 	
 	@GetMapping
 	@Operation(summary = "Finds all Book", description = "Finds all Book", tags = {"Book"},
@@ -45,7 +45,7 @@ public class BookController {
 		}
 	)
 	public List<Book> findAll() {
-		return service.findAll();
+		return bookService.findAll();
 	}
 
 	@GetMapping("/{id}")
@@ -62,7 +62,7 @@ public class BookController {
 		}
 	)
 	public Book findById(@PathVariable(value = "id") Long id) {
-		return service.findById(id);
+		return bookService.findById(id);
 	}
 	
 	@PostMapping
@@ -79,7 +79,7 @@ public class BookController {
 		}
 	)
 	public Book create(@RequestBody Book book) {
-		return service.create(book);
+		return bookService.create(book);
 	}
 	
 	@PutMapping
@@ -97,7 +97,7 @@ public class BookController {
 		}
 	)
 	public Book update(@RequestBody Book book) {
-		return service.update(book);
+		return bookService.update(book);
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -113,7 +113,7 @@ public class BookController {
 		}
 	)
 	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
-		service.delete(id);
+		bookService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }

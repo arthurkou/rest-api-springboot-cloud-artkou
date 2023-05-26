@@ -4,7 +4,8 @@ import br.com.artkou.entity.PersonEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
-import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.ResourceSupport;
+
 import java.io.Serializable;
 
 @Data
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonPropertyOrder({"id","firstName","lastName","address","gender"})
-public class Person extends RepresentationModel<Person> implements Serializable {
+public class Person extends ResourceSupport implements Serializable {
 
     @JsonProperty("id")
     private Long key;
