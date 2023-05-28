@@ -5,14 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
-
 import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"id","firstName","lastName","address","gender"})
+@JsonPropertyOrder({"id","firstName","lastName","address","gender","enabled"})
 public class Person extends RepresentationModel<Person> implements Serializable {
 
     @JsonProperty("id")
@@ -21,6 +20,7 @@ public class Person extends RepresentationModel<Person> implements Serializable 
     private String lastName;
     private String address;
     private String gender;
+    private Boolean enabled;
 
     public static Person toEntity(PersonEntity person) {
         return Person.builder()
@@ -29,6 +29,7 @@ public class Person extends RepresentationModel<Person> implements Serializable 
                 .lastName(person.getLastName())
                 .address(person.getAddress())
                 .gender(person.getGender())
+                .enabled(person.getEnabled())
                 .build();
     }
 }

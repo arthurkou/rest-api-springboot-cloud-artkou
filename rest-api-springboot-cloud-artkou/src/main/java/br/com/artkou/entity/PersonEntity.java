@@ -35,12 +35,16 @@ public class PersonEntity implements Serializable {
     @Column(nullable = false, length = 6)
     private String gender;
 
+    @Column(nullable = false)
+    private Boolean enabled;
+
     public PersonEntity(Person person) {
         this.id = person.getKey();
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();
         this.address = person.getAddress();
         this.gender = person.getGender();
+        this.enabled = person.getEnabled();
     }
 
     public static PersonEntity toEntity(PersonEntity personEntity, Person person) {
@@ -48,6 +52,7 @@ public class PersonEntity implements Serializable {
           personEntity.setLastName(person.getLastName());
           personEntity.setGender(person.getGender());
           personEntity.setAddress(person.getAddress());
+          personEntity.setEnabled(person.getEnabled());
           return personEntity;
     }
 }
